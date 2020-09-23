@@ -41,7 +41,7 @@ const Tweet = ({ tweetObj, isOwner, userObj }) => {
                 required
                 className="formInput"
               />
-              <input type="submit" value="트윗 업데이트"" className="formBtn" />
+              <input type="submit" value="트윗 업데이트" className="formBtn" />
             </form>
             <button onClick={toggleEditing} className="formBtn cancelBtn">
               취소
