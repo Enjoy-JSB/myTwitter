@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Tweet = ({ tweetObj, isOwner, userObj }) => {
+const Tweet = ({ tweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newTweet, setNewTweet] = useState(tweetObj.text);
   const onDeleteClick = async () => {
@@ -28,7 +28,7 @@ const Tweet = ({ tweetObj, isOwner, userObj }) => {
   };
   return (
     <>
-      <span>{userObj.displayName}</span>
+      <span>{tweetObj.creatorName || "익명"}</span>
       <div className="nweet" style={{ marginTop: "10px" }}>
         {editing ? (
           <>
