@@ -33,10 +33,10 @@ const Auth = () => {
       <AuthForm />
       <div className="authBtns">
         <button name="google" onClick={onSocialClick} className="authBtn">
-          Continue with Google <FontAwesomeIcon icon={faGoogle} />
+          구글 계정 이용 <FontAwesomeIcon icon={faGoogle} />
         </button>
         <button name="github" onClick={onSocialClick} className="authBtn">
-          Continue with Github <FontAwesomeIcon icon={faGithub} />
+          깃허브 계정 이용 <FontAwesomeIcon icon={faGithub} />
         </button>
       </div>
     </div>

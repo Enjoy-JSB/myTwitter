@@ -1,6 +1,6 @@
-import { authService, dbService } from "myBase";
+import { authService } from "myBase";
 import React, { useEffect, useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default ({ userObj, refreshUser }) => {
   const history = useHistory();
@@ -9,14 +9,13 @@ export default ({ userObj, refreshUser }) => {
     authService.signOut();
     history.push("/");
   };
-  const getMyTweets = async () => {
-    const tweets = await dbService
-      .collection("tweets")
-      .where("creatorId", "==", userObj.uid)
-      .orderBy("createdAt")
-      .get();
-    console.log(tweets.docs.map((doc) => doc.data()));
-  };
+  // const getMyTweets = async () => {
+  //   const tweets = await dbService
+  //     .collection("tweets")
+  //     .where("creatorId", "==", userObj.uid)
+  //     .orderBy("createdAt")
+  //     .get();
+  // };
   const onChange = (event) => {
     const {
       target: { value },
@@ -32,22 +31,22 @@ export default ({ userObj, refreshUser }) => {
       refreshUser();
     }
   };
-  useEffect(() => {
-    getMyTweets();
-  }, []);
+  // useEffect(() => {
+  //   getMyTweets();
+  // }, []);
   return (
     <div className="container">
       <form onSubmit={onSubmit} className="profileForm">
         <input
           type="text"
-          placeholder="Display name"
+          placeholder="이름 작성"
           value={newDisplayName}
           onChange={onChange}
           className="formInput"
         />
         <input
           type="submit"
-          value="Update Profile"
+          value="프로필 업데이트"
           onSubmit={onSubmit}
           className="formBtn"
           style={{
@@ -56,7 +55,7 @@ export default ({ userObj, refreshUser }) => {
         />
       </form>
       <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
-        Log Out
+        로그아웃
       </span>
     </div>
   );

@@ -8,14 +8,13 @@ const Home = ({ userObj }) => {
   useEffect(() => {
     dbService
       .collection("tweets")
-      .orderBy("createdAt", "asc")
+      .orderBy("createdAt", "desc")
       .onSnapshot((snapshot) => {
         const tweetArray = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setTweets(tweetArray);
-        console.log(tweetArray);
       });
   }, []);
   return (
@@ -27,6 +26,7 @@ const Home = ({ userObj }) => {
             key={tweet.id}
             tweetObj={tweet}
             isOwner={tweet.creatorId === userObj.uid}
+            userObj={userObj}
           />
         ))}
       </div>

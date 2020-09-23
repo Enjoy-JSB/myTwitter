@@ -59,13 +59,13 @@ const TweetFactory = ({ userObj }) => {
           type="text"
           value={tweet}
           onChange={onChange}
-          placeholder="What's on your mind?"
+          placeholder="무슨 생각을 하고 계신가요?"
           maxLength={120}
         />
         <input type="submit" value="&rarr;" className="factoryInput__arrow" />
       </div>
       <label for="attach-file" className="factoryInput__label">
-        <span>Add photos</span>
+        <span>사진 추가</span>
         <FontAwesomeIcon icon={faPlus} />
       </label>
       <input
@@ -86,7 +86,7 @@ const TweetFactory = ({ userObj }) => {
             }}
           />
           <div className="factoryForm__clear" onClick={onClearAttachment}>
-            <span>Remove</span>
+            <span>제거하기</span>
             <FontAwesomeIcon icon={faTimes} />
           </div>
         </div>

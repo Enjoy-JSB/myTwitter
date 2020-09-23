@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Tweet = ({ tweetObj, isOwner }) => {
+const Tweet = ({ tweetObj, isOwner, userObj }) => {
   const [editing, setEditing] = useState(false);
   const [newTweet, setNewTweet] = useState(tweetObj.text);
   const onDeleteClick = async () => {
@@ -27,43 +27,46 @@ const Tweet = ({ tweetObj, isOwner }) => {
     setNewTweet(value);
   };
   return (
-    <div className="nweet">
-      {editing ? (
-        <>
-          <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              placeholder="Edit your tweet"
-              value={newTweet}
-              onChange={onChange}
-              required
-              className="formInput"
-            />
-            <input type="submit" value="Update Tweet" className="formBtn" />
-          </form>
-          <button onClick={toggleEditing} className="formBtn cancelBtn">
-            Cancel
-          </button>
-        </>
-      ) : (
-        <>
-          <h4>{tweetObj.text}</h4>
-          {tweetObj.attachmentUrl && (
-            <img src={tweetObj.attachmentUrl} width="50px" height="50px" />
-          )}
-          {isOwner && (
-            <div class="nweet__actions">
-              <span onClick={onDeleteClick}>
-                <FontAwesomeIcon icon={faTrash} />
-              </span>
-              <span onClick={toggleEditing}>
-                <FontAwesomeIcon icon={faPencilAlt} />
-              </span>
-            </div>
-          )}
-        </>
-      )}
-    </div>
+    <>
+      <span>{userObj.displayName}</span>
+      <div className="nweet" style={{ marginTop: "10px" }}>
+        {editing ? (
+          <>
+            <form onSubmit={onSubmit}>
+              <input
+                type="text"
+                placeholder="트윗을 수정하세요"
+                value={newTweet}
+                onChange={onChange}
+                required
+                className="formInput"
+              />
+              <input type="submit" value="트윗 업데이트"" className="formBtn" />
+            </form>
+            <button onClick={toggleEditing} className="formBtn cancelBtn">
+              취소
+            </button>
+          </>
+        ) : (
+          <>
+            <h4>{tweetObj.text}</h4>
+            {tweetObj.attachmentUrl && (
+              <img src={tweetObj.attachmentUrl} width="50px" height="50px" />
+            )}
+            {isOwner && (
+              <div class="nweet__actions">
+                <span onClick={onDeleteClick}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </span>
+                <span onClick={toggleEditing}>
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </span>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </>
   );
 };
 
